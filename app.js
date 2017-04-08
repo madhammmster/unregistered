@@ -37,10 +37,11 @@ app.use('/logs', logs);
 app.use('/rides', rides);
 
 
-app.post('/checkLicensePlate', function (req, res) {
-  var license;
+app.post('/checkLicensePlate/', function (req, res) {
+  var license, licenseId;
+  licenseId = req.body.licenseId;
   jsdom.env(
-    "http://tablica-rejestracyjna.pl/LRA2C20",
+    "http://tablica-rejestracyjna.pl/"+licenseId,
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
       license = window.$("#cnt-1").text().trim();
